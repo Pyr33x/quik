@@ -4,6 +4,7 @@ import { submit } from "~/actions";
 import { sql } from "drizzle-orm";
 import { auth } from "~/lib/auth";
 import { db } from "~/server/db";
+import Image from "next/image";
 
 export default async function HomePage({
   searchParams,
@@ -14,19 +15,19 @@ export default async function HomePage({
   const nts = await db
     .select()
     .from(notes)
-    .limit(20)
+    .limit(5)
     .orderBy(searchParams.asc ? sql`${notes.id} ASC` : sql`${notes.id} DESC`);
   return (
-    <section className="max-w-4xl">
-      <h1 className="to-background text-wrap bg-gradient-to-b from-white bg-clip-text text-center text-5xl font-black tracking-tight text-transparent lg:text-7xl">
+    <section className="max-w-4xl selection:bg-secondary selection:text-foreground">
+      <h1 className="text-wrap bg-gradient-to-b from-white to-background bg-clip-text text-center text-5xl font-black tracking-tight text-transparent lg:text-7xl">
         Welcome to Quik
       </h1>
       {session ? (
-        <p className="text-muted-foreground mt-2 text-center text-lg font-medium">
+        <p className="mt-2 text-center text-lg font-medium text-muted-foreground">
           You successfully signed into your account!
         </p>
       ) : (
-        <p className="text-muted-foreground mt-2 text-center text-lg font-medium">
+        <p className="mt-2 text-center text-lg font-medium text-muted-foreground">
           You need to log into your github account to continue
         </p>
       )}
@@ -52,9 +53,20 @@ export default async function HomePage({
           {nts.map((note) => (
             <li
               key={note.id}
-              className="my-2 flex-wrap rounded-[8px] border-neutral-800 bg-neutral-900 px-4 py-1"
+              className="my-2 rounded-[8px] border-neutral-800 bg-neutral-900 px-1 py-2 text-xl text-foreground/90"
             >
-              {note.text}
+              <div className="flex flex-row items-center">
+                <Image
+                  src={session?.user?.image ?? ""}
+                  width={20}
+                  height={20}
+                  alt={note.text}
+                  className="pointer-events-none mx-2 select-none rounded-full"
+                  priority
+                  quality={100}
+                />
+                {note.text}
+              </div>
             </li>
           ))}
         </ul>
