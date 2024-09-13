@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import "~/styles/globals.css";
 
+// TODO: OG IMAGE
 export const metadata: Metadata = {
   title: "Quik",
   description: "A simple note app",
