@@ -41,6 +41,14 @@ async function Navbar() {
                 {route.title}
               </Link>
             ))}
+            <a
+              href="http://github.com/pyr33x/quik"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={routeStyle}
+            >
+              Source
+            </a>
           </div>
           <div className="flex flex-row items-center gap-x-2">
             <Drawer>
