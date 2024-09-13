@@ -1,0 +1,38 @@
+{
+  "id": "38d11002-3ed9-4ef9-b53d-ffaa21a4ff0f",
+  "prevId": "45d08ccb-d87d-404c-9942-22ce75d8e6d1",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.notes_note": {
+      "name": "notes_note",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "text": {
+          "name": "text",
+          "type": "varchar(12)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

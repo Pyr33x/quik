@@ -1,37 +1,64 @@
-import Link from "next/link";
+import { Button, Input, Separator } from "~/components/ui";
+import { notes } from "~/server/db/schema";
+import { submit } from "~/actions";
+import { sql } from "drizzle-orm";
+import { auth } from "~/lib/auth";
+import { db } from "~/server/db";
 
-export default function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: { asc: string };
+}) {
+  const session = await auth();
+  const nts = await db
+    .select()
+    .from(notes)
+    .limit(20)
+    .orderBy(searchParams.asc ? sql`${notes.id} ASC` : sql`${notes.id} DESC`);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
-        </div>
+    <section className="max-w-4xl">
+      <h1 className="to-background text-wrap bg-gradient-to-b from-white bg-clip-text text-center text-5xl font-black tracking-tight text-transparent lg:text-7xl">
+        Welcome to Quik
+      </h1>
+      {session ? (
+        <p className="text-muted-foreground mt-2 text-center text-lg font-medium">
+          You successfully signed into your account!
+        </p>
+      ) : (
+        <p className="text-muted-foreground mt-2 text-center text-lg font-medium">
+          You need to log into your github account to continue
+        </p>
+      )}
+      <Separator className="my-8" />
+      <form className="flex flex-row gap-x-2" action={submit}>
+        <Input
+          type="text"
+          placeholder="✨ (only 12 phrases)"
+          pattern="^[\p{a-zA-Z}]+$"
+          name="text"
+          autoFocus
+          maxLength={12}
+          required
+          disabled={!session}
+          className="w-full"
+        />
+        <Button disabled={!session} variant="secondary">
+          ✉️
+        </Button>
+      </form>
+      <div className="mt-5">
+        <ul>
+          {nts.map((note) => (
+            <li
+              key={note.id}
+              className="my-2 flex-wrap rounded-[8px] border-neutral-800 bg-neutral-900 px-4 py-1"
+            >
+              {note.text}
+            </li>
+          ))}
+        </ul>
       </div>
-    </main>
+    </section>
   );
 }

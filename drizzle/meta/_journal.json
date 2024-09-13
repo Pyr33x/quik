@@ -15,6 +15,13 @@
       "when": 1726257998238,
       "tag": "0001_windy_squadron_sinister",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1726261713431,
+      "tag": "0002_familiar_scarlet_spider",
+      "breakpoints": true
     }
   ]
 }
