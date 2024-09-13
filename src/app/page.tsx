@@ -53,20 +53,9 @@ export default async function HomePage({
           {nts.map((note) => (
             <li
               key={note.id}
-              className="my-2 rounded-[8px] border-neutral-800 bg-neutral-900 px-1 py-2 text-xl text-foreground/90"
+              className="my-2 rounded-[8px] border-neutral-800 bg-neutral-900 px-4 py-2 text-xl text-foreground/90"
             >
-              <div className="flex flex-row items-center">
-                <Image
-                  src={session?.user?.image ?? ""}
-                  width={20}
-                  height={20}
-                  alt={note.text}
-                  className="pointer-events-none mx-2 select-none rounded-full"
-                  priority
-                  quality={100}
-                />
-                {note.text}
-              </div>
+              {note.text}
             </li>
           ))}
         </ul>
