@@ -53,7 +53,7 @@ export default async function HomePage({
           {nts.map((note) => (
             <li
               key={note.id}
-              className="my-2 rounded-[8px] border-neutral-800 bg-neutral-900 px-4 py-2 text-xl text-foreground/90"
+              className="my-2 rounded-[8px] border-neutral-800 bg-neutral-900 px-4 py-1 text-xl text-foreground/90"
             >
               {note.text}
             </li>
