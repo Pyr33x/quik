@@ -4,7 +4,6 @@ import { submit } from "~/actions";
 import { sql } from "drizzle-orm";
 import { auth } from "~/lib/auth";
 import { db } from "~/server/db";
-import Image from "next/image";
 
 export default async function HomePage({
   searchParams,
@@ -35,7 +34,7 @@ export default async function HomePage({
       <form className="flex flex-row gap-x-2" action={submit}>
         <Input
           type="text"
-          placeholder="✨ (only 12 phrases)"
+          placeholder="✨ Press ⌘K"
           pattern="^[\p{a-zA-Z}]+$"
           name="text"
           autoFocus

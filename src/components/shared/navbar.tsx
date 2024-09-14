@@ -56,10 +56,10 @@ async function Navbar() {
                 className={
                   session
                     ? ""
-                    : "inline-flex items-center justify-center whitespace-nowrap rounded-full bg-blue-600 px-4 py-2 text-sm font-medium outline-0 ring-0 transition-colors hover:bg-blue-600/90 disabled:pointer-events-none disabled:opacity-50"
+                    : "inline-flex items-center justify-center whitespace-nowrap rounded-full bg-secondary px-4 py-2 text-sm font-medium outline-0 ring-0 transition-colors hover:bg-secondary/70 disabled:pointer-events-none disabled:opacity-50"
                 }
               >
-                {!session && <span>Login</span>}
+                {!session && <span>Sign In</span>}
                 {session && (
                   <Image
                     src={session?.user?.image ?? ""}
@@ -77,8 +77,8 @@ async function Navbar() {
                   </DrawerTitle>
                   <DrawerDescription>
                     {session
-                      ? `You logged in as ${session?.user?.email}!`
-                      : "You can continue access the input by logging in with your github account."}
+                      ? `You signed in as ${session?.user?.email}!`
+                      : "This is strictly for demo purposes - your data won't be stored."}
                   </DrawerDescription>
                 </DrawerHeader>
                 <Separator className="my-2" />
