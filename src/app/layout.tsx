@@ -68,7 +68,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${GeistSans.className} h-full w-full bg-background`}>
         <Navigation />
-        <main className="flex min-h-screen flex-col items-center justify-center scroll-smooth px-8 py-36 antialiased">
+        <main className="flex min-h-screen flex-col items-center justify-center scroll-smooth px-8 py-36 antialiased selection:bg-secondary selection:text-foreground">
           {children}
         </main>
         <Analytics />
