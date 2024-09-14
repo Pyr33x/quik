@@ -7,7 +7,7 @@ export default function NotFound() {
         Not Found
       </h1>
       <p className="mb-12 mt-2 text-lg font-medium text-muted-foreground">
-        Couldn't find requested resource
+        Could not find requested resource
       </p>
       <Link
         href="/"
