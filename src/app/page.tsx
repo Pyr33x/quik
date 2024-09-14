@@ -48,7 +48,7 @@ export default async function HomePage() {
         <Input
           type="text"
           placeholder="✨ Press ⌘K"
-          pattern="^[\p{a-zA-Z}]+$"
+          pattern="^[a-zA-Z0-9]+$"
           name="text"
           autoFocus
           maxLength={12}
