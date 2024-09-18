@@ -6,7 +6,7 @@ import { db } from "~/server/db";
 
 export async function submit(form: FormData) {
   const text = form.get("text") + "";
-  if (!/^[a-zA-Z0-9]/u.test(text)) return;
+  if (!/^[a-zA-Z0-9 ]+$/u.test(text)) return;
   await db.insert(notes).values({ text });
   redirect("/");
 }
